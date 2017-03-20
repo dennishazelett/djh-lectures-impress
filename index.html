@@ -1,0 +1,663 @@
+<!doctype html>
+
+
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=1024" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <title>impress.js | presentation tool based on the power of CSS3 transforms and transitions in modern browsers | by Bartek Szopka @bartaz</title>
+    
+    <meta name="description" content="impress.js is a presentation tool based on the power of CSS3 transforms and transitions in modern browsers and inspired by the idea behind prezi.com." />
+    <meta name="author" content="Bartek Szopka" />
+
+    <link href="http://fonts.googleapis.com/css?family=Open+Sans:regular,semibold,italic,italicsemibold|PT+Sans:400,700,400italic,700italic|PT+Serif:400,700,400italic,700italic" rel="stylesheet" />
+
+    <!--
+        
+        Impress.js doesn't depend on any external stylesheets. It adds all of the styles it needs for the
+        presentation to work.
+        
+        This style below contains styles only for demo presentation. Browse it to see how impress.js
+        classes are used to style presentation steps, or how to apply fallback styles, but I don't want
+        you to use them directly in your presentation.
+        
+        Be creative, build your own. We don't really want all impress.js presentations to look the same,
+        do we?
+        
+        When creating your own presentation get rid of this file. Start from scratch, it's fun!
+        
+    -->
+    <link href="css/impress-demo.css" rel="stylesheet" />
+    
+    <link rel="shortcut icon" href="favicon.png" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+</head>
+
+<!--
+    
+    Body element is used by impress.js to set some useful class names, that will allow you to detect
+    the support and state of the presentation in CSS or other scripts.
+    
+    First very useful class name is `impress-not-supported`. This class means, that browser doesn't
+    support features required by impress.js, so you should apply some fallback styles in your CSS.
+    It's not necessary to add it manually on this element. If the script detects that browser is not
+    good enough it will add this class, but keeping it in HTML means that users without JavaScript
+    will also get fallback styles.
+    
+    When impress.js script detects that browser supports all required features, this class name will
+    be removed.
+    
+    The class name on body element also depends on currently active presentation step. More details about
+    it can be found later, when `hint` element is being described.
+    
+-->
+<body class="impress-not-supported">
+
+<!--
+    For example this fallback message is only visible when there is `impress-not-supported` class on body.
+-->
+<div class="fallback-message">
+    <p>Your browser <b>doesn't support the features required</b> by impress.js, so you are presented with a simplified version of this presentation.</p>
+    <p>For the best experience please use the latest <b>Chrome</b>, <b>Safari</b> or <b>Firefox</b> browser.</p>
+</div>
+
+<!--
+    
+    Now that's the core element used by impress.js.
+    
+    That's the wrapper for your presentation steps. In this element all the impress.js magic happens.
+    It doesn't have to be a `<div>`. Only `id` is important here as that's how the script find it.
+    
+    You probably won't need it now, but there are some configuration options that can be set on this element.
+    
+    To change the duration of the transition between slides use `data-transition-duration="2000"` giving it
+    a number of ms. It defaults to 1000 (1s).
+    
+    You can also control the perspective with `data-perspective="500"` giving it a number of pixels.
+    It defaults to 1000. You can set it to 0 if you don't want any 3D effects.
+    If you are willing to change this value make sure you understand how CSS perspective works:
+    https://developer.mozilla.org/en/CSS/perspective
+    
+    But as I said, you won't need it for now, so don't worry - there are some simple but interesting things
+    right around the corner of this tag ;)
+    
+-->
+<div id="impress">
+
+    <!--
+        
+        Here is where interesting thing start to happen.
+        
+        Each step of the presentation should be an element inside the `#impress` with a class name
+        of `step`. These step elements are positioned, rotated and scaled by impress.js, and
+        the 'camera' shows them on each step of the presentation.
+        
+        Positioning information is passed through data attributes.
+        
+        In the example below we only specify x and y position of the step element with `data-x="-1000"`
+        and `data-y="-1500"` attributes. This means that **the center** of the element (yes, the center)
+        will be positioned in point x = -1000px and y = -1500px of the presentation 'canvas'.
+        
+        It will not be rotated or scaled.
+        
+    -->
+    <div id="title" class="step" data-x="0" data-y="-1500" data-z="0" data-rotate-y="0" data-rotate-z="2.5" data-scale=2>
+      <font size="14" color="#660000"><b><i>Developmental Genetics</i></b><br></font>
+      <!--<img src="images/Entry_24535_Mouse-Embryo-3Color.png" style="position:absolute; LEFT:300px; TOP:100px; WIDTH:258px; HEIGHT:320px"> -->
+    </div>
+
+    
+    <!--
+        
+        The `id` attribute of the step element is used to identify it in the URL, but it's optional.
+        If it is not defined, it will get a default value of `step-N` where N is a number of slide.
+        
+        So in the example below it'll be `step-2`.
+        
+        The hash part of the url when this step is active will be `#/step-2`.
+        
+        You can also use `#step-2` in a link, to point directly to this particular step.
+        
+        Please note, that while `#/step-2` (with slash) would also work in a link it's not recommended.
+        Using classic `id`-based links like `#step-2` makes these links usable also in fallback mode.
+        
+    -->
+    <div id="outline" class="step slide" data-x="955" data-y="-1460" data-z="-84" data-rotate-x="0" data-rotate-y="10" data-rotate-z="2.7" data-scale="1">
+      <ul>
+	<li type="disc"><h1>What are the <i><strong>essential questions</strong></i> of Developmental Biology?</h1></li>
+	<li type="disc"><h1>What are the <i><strong>approaches</strong></i>?</h1></li>
+	<li type="disc"><h1>What have we <i><strong>learned</strong></i> from model systems?</h1></li>
+      </ul>
+      <img src="images/92821651.jpg" height="80%" align="middle"></img>
+    </div>
+
+    <div id="waddington" class="step slide" data-x="1881" data-y="-1420" data-z="-332"  data-rotate-x="0" data-rotate-y="20" data-rotate-z="2.7" data-scale="0.5">
+      <q>Essential Questions 1: <i><strong>Differentiation</strong></i></q>
+      <h1>  </h1>
+      <img src="images/F6.large.jpg" width="60%" height="50%"><i> <a href="https://en.wikipedia.org/wiki/C._H._Waddington">Waddington</a></i> (1953)</img>
+    </div>
+    <!--
+    <div class="step slide" data-x="1881" data-y="-1420" data-z="-334"  data-rotate-x="0" data-rotate-y="200" data-rotate-z="-2.7">
+      <q>Essential Questions 1: <i><strong>Differentiation</strong></i></q>
+      <h1>  </h1>
+      <img src="images/F6.large.jpg" width="30%" height="20%"><i> Waddington</i> (1953)</img>
+    </div>
+    -->
+    <div id="chicken-egg" class="step" data-x="2750" data-y="-1380" data-z="-737" data-rotate-x="0" data-rotate-y="30" data-rotate-z="2.7">
+      <img src="images/Chicken%20&%20eggs%20no%20bkg%20copy.png"></img>
+    </div>
+
+    <div id="cliff" class="step" data-x="3535" data-y="-1340" data-z="-1287" data-rotate-x="0" data-rotate-y="40" data-rotate-z="2.7">
+      <q>"Flies are flies, and mice <strong>are people</strong>"</q>
+      <h1 align="right"><a href="http://www.ntnu.edu/kavli/research/kentros">--Cliff Kentros</a></h1>
+      <img src="images/Cliff-Kentros-WEB.jpg"></img>
+    </div>
+
+    <div id="flies-are-people" class="step" data-x="4213" data-y="-1300" data-z="-1964" data-rotate-x="0" data-rotate-y="50" data-rotate-z="2.7">
+      Flies are people too
+      <video width="300" height="200" autoplay loop>
+	<source src="images/pout.mp4" type="video/mp4">
+      </video> 
+      <!--<img src="images/pout.gif" align="right">Flies are people too</img> -->
+      <p><br></p>
+      <img src="images/gr6_lrg.png" width="70%" height="70%"></img>
+    </div>
+
+    <div id="bigmouse" class="step" data-x="4763" data-y="-1260" data-z="-2750" data-rotate-x="0" data-rotate-y="60" data-rotate-z="2.7" data-scale="0.75">
+      <img src="images/animal-detail-mouse.png" width="100%" height="100%">
+    </div>
+    
+    <div id="tinman" class="step" data-x="4563" data-y="-1260" data-z="-2750" data-rotate-x="0" data-rotate-y="240" data-rotate-z="-2.7" data-scale="0.1">
+      <img src="images/insitu19150_s.png">
+      <img src="images/insitu19157_s.png">
+    </div>
+
+    <div id="signaling-pathways" class="step slide" data-x="5168" data-y="-1220" data-z="-3619" data-rotate-x="0" data-rotate-y="70" data-rotate-z="2.7" data-scale=0.1>
+      <h1>Key point: The major signaling pathways are <b>also conserved</b> throughout the animal kingdom.</h1>
+      <p><br></p>
+      <ul>
+	<li type="circle">Notch <a href="http://www.ncbi.nlm.nih.gov/pubmed/20122714">[<i>Emily Pratt</i> et al., (review)]</a></li>
+	<li type="circle">Hedgehog <a href="http://genesdev.cshlp.org/content/15/23/3059.short">[<i>Phil Ingham</i> and <i>Andy McMahon</i> (review)]</a></li>
+	<li type="circle">WNT (<a href="http://www.ncbi.nlm.nih.gov/pubmed/17563758">Canonical</a> and <a href="http://www.ncbi.nlm.nih.gov/pubmed/23846023">non-canonical</a>)</li>
+	<li type="circle">TGF&#946 (incl. BMP and FGF)</li>
+	<li type="circle">RTK/ras/MAPK (EGFR)</li>
+      </ul>
+    </div>
+
+
+    <div id="differentiation-cycle" class="step" data-x="5416" data-y="-1180" data-z="-4545" data-rotate-x="0" data-rotate-y="80" data-rotate-z="2.7">
+      <h1>Key point: The cycle of <b>transcriptional control</b> followed by intercellular <b>signaling cascades</b> and <b>chromatin remodeling</b> is reused throughout development.</h1>
+
+      <img src="images/Presentation1.png">
+    </div>
+    
+    <div id="flies-are-not-people" class="step" data-x="5500" data-y="-1140" data-z="-5500" data-rotate-x="0" data-rotate-y="90" data-rotate-z="2.7">
+      <img src="images/fruitfly_imago.png" width="40%">
+      <img src="images/davinci-vitruvian-man.png" width="50%">
+    </div>
+
+    <div id="morphogenesis" class="step" data-x="5416" data-y="-1100" data-z="-6455" data-rotate-x="0" data-rotate-y="100" data-rotate-z="2.7">
+      <q>Essential Questions 2:<br>
+	<strong><i>Morphogenesis</i></strong></q>
+      <iframe width="640" height="360" src="https://www.youtube.com/embed/dXpAbezdOho?&autoplay=1&loop=1&playlist=dXpAbezdOho" frameborder="0" allowfullscreen></iframe>
+    </div>
+
+    <div id="germ-layers" class="step" data-x="5168" data-y="-1060" data-z="-7381" data-rotate-x="0" data-rotate-y="110" data-rotate-z="2.7" data-scale="0.5">
+      <img src="images/germ_layer_derivatives.png" width="100%"><i><u>Developmental Biology</i></u> (Gilbert)
+    </div>
+
+    <div id="frog-gastrulation" class="step" data-x="4763" data-y="-1020" data-z="-8250" data-rotate-x="0" data-rotate-y="120" data-rotate-z="2.7">
+      <img src="images/frog_gastrulation.png" width="100%">
+    </div>
+
+    <div id="zfish-gastrulation" class="step" data-x="4213" data-y="-980" data-z="-9035" data-rotate-x="0" data-rotate-y="130" data-rotate-z="2.7" data-scale="0.5">
+      <img src="images/danio_gastrulation.jpg" width="100%">
+    </div>
+
+    <div id="mammal-gastrulation" class="step" data-x="3535" data-y="-940" data-z="-9713" data-rotate-x="0" data-rotate-y="140" data-rotate-z="2.7">
+      <img src="images/mammal_gastrulation.png" width="100%">
+    </div>
+
+    <div id="frogs-are-flies-too" class="step" data-x="2750" data-y="-900" data-z="-10263" data-rotate-x="0" data-rotate-y="150" data-rotate-z="2.7">
+      <img src="images/fly_frog_comparison_gastrulation.png" width="100%">
+    </div>
+
+    <div id="morphogen-gradient" class="step slide" data-x="1881" data-y="-860" data-z="-10668" data-rotate-x="0" data-rotate-y="160" data-rotate-z="2.7" data-scale="0.5">
+      <q>Key Concept: <i><b>The Morphogen Gradient</b></q><br>
+      <ul>
+	<li type="circle">Secreted factors establish fields of developmental potential
+	<li type="circle">Gradient thresholds define subdomains precisely
+	<li type="circle">3D tissue structure is determined by gradient source and mode of transport
+      </ul>
+    </div>
+
+    <div id="limb-bud" class="step slide" data-x="1881" data-y="-860" data-z="-10668" data-rotate-x="0" data-rotate-y="160" data-rotate-z="2.7" data-scale="0.005">
+      <img src="images/Stage14_sem2.jpg" height="90%"></img>
+      <br>Secreted factors establish fields of potential
+    </div>
+        
+    <div id="limb-bud-model" class="step slide" data-x="1881" data-y="-850" data-z="-10668" data-rotate-x="0" data-rotate-y="160" data-rotate-z="2.7" data-scale="0.001">
+      <img src="images/Limb_bud_diagram.jpg" height="100%">
+      <br><i>Shh</i> and <i>FGFs</i> pattern the axes of the limb bud
+    </div>
+    
+    <div id="dorsal-morphogen-gradient" class="step" data-x="955" data-y="-820" data-z="-10916" data-rotate-x="0" data-rotate-y="170" data-rotate-z="2.7" data-scale="1">
+      <img src="images/DeRobertis_ARCDB_Fig_7.png" width="100%">
+    </div>
+    
+    <div id="morphogen-effects" class="step slide" data-x="0" data-y="-780" data-z="-11000" data-rotate-x="0" data-rotate-y="180" data-rotate-z="2.7">
+      <q><b>Morphogen effects</b></q><br>
+      <ul>
+	<li>cell shape change
+	<li>cell growth
+	<li>establishment of cell polarity
+	<li>cell migration
+	<li>delamination
+	<li>cell division
+	<li>asymmetric cell division
+	<li>induction of a new program
+	<li>programmed cell death
+	<li>repression of a default differentiation path
+      </ul>
+    </div>
+    <div id="cycle-reprise" class="step" data-x="0" data-y="-780" data-z="-11000" data-rotate-x="0" data-rotate-y="180" data-rotate-z="2.7" data-scale="0.1">
+      <img src="images/Presentation1.png" height="100%">
+    </div>
+    
+    <div id="neurulation" class="step" data-x="-955" data-y="-740" data-z="-10916" data-rotate-x="0" data-rotate-y="190" data-rotate-z="2.7" data-scale="1">
+      <img src="images/3-step%20neurulation.png" width="30%" style="position:absolute; TOP:-100px; LEFT:500px">
+      <br>
+      <ul><font size="6" color="black">
+	<li>convergent extension
+	<li>intercalation
+	<li>columnarization
+	<li>apical constriction
+	</font>
+      </ul>
+    </div>
+     
+    <div id="zfish-neurulation-movie" class="step" data-x="-1881" data-y="-700" data-z="-10668" data-rotate-x="0" data-rotate-y="200" data-rotate-z="2.7">
+      <q>Morphogenesis during neurulation in live embryos (Zebrafish)</q><br>
+      <iframe width="640" height="360" src="https://www.youtube.com/embed/m9q7ZmK8UfA?&autoplay=1&loop=1&playlist=m9q7ZmK8UfA" frameborder="0" allowfullscreen></iframe>
+    </div>
+     
+    <div id="human-devel-movie" class="step" data-x="-2750" data-y="-660" data-z="-10263" data-rotate-x="0" data-rotate-y="210" data-rotate-z="2.7" data-scale="1">
+      <video width="540" height="660" autoplay loop>
+	<source src="images/12-16-14.mp4" type="video/mp4">
+      </video>
+    </div>
+    
+    <div id="sonic" class="step" data-x="-3535" data-y="-620" data-z="-9713" data-rotate-x="0" data-rotate-y="220" data-rotate-z="2.7" data-scale="1.5">
+      <img src="images/Sonic-The-Hedgehog-PNG-15.png" style="position:absolute; TOP:-350px; LEFT:140px; WIDTH:596px; HEIGHT:754px">
+    </div>
+    <div class="step" data-x="-3535" data-y="-620" data-z="-9713" data-rotate-x="0" data-rotate-y="220" data-rotate-z="2.7" data-scale="0.05">
+      <font face="helvetica" size="10" color="black"><b>Syndromes associated with Sonic Hedgehog (mutations in the <i>Shh</i> gene)</b><br>
+      <font face="helvetica" size="6" color="black">
+      <ul>
+	<li><a href="https://en.wikipedia.org/wiki/Holoprosencephaly">holoprosencephaly</a>
+	<li><a href="https://en.wikipedia.org/wiki/Coloboma">coloboma</a>
+	<li><a href="https://en.wikipedia.org/wiki/Microphthalmia">micropthalmia</a>
+	<li><a href="https://en.wikipedia.org/wiki/Polydactyly">polydactyly</a>
+      </ul>
+    </div>
+    
+    <div class="step" data-x="-4213" data-y="-580" data-z="-9035" data-rotate-x="0" data-rotate-y="230" data-rotate-z="2.7">
+      <font face="helvetica" size="10" color="black"><b>Neural Crest Defects</b></font>
+      <font face="helvetica" size="4" color="black">
+      <table border="0" cellpadding="0" cellspacing="0" class="data">
+	<colgroup><col align="left"/><col align="left"/></colgroup><thead valign="top"><tr><th class="last rowsep" valign="top"><u>Disease</th><th class="last rowsep" valign="top"><u>Description</u></th></tr></thead> 
+	<tbody valign="top">
+	  <tr class="alt"><td valign="top" class="first-cell"><a href="https://en.wikipedia.org/wiki/DiGeorge_syndrome">DiGeorge syndrome</a></td><td valign="top">Defects in heart, palate, thymus, facial features; learning disabilities</td></tr>
+	  <tr><td valign="top" class="first-cell"><a href="https://en.wikipedia.org/wiki/Treacher_Collins_syndrome">Treacher-Collins syndrome</a></td><td valign="top">Hypoplasia of facial bones, defects in ear development and eye function, cleft palate</td></tr>
+	  <tr class="alt"><td valign="top" class="first-cell"><a href="https://en.wikipedia.org/wiki/CHARGE_syndrome">CHARGE syndrome</a></td><td valign="top">Defects in CNS, heart, hearing; growth and/or developmental retardation; genital and urinary tract defect</td></tr>
+	  <tr><td valign="top" class="first-cell"><a href="https://en.wikipedia.org/wiki/Waardenburg_syndrome">Waardenburg syndrome</a></td><td valign="top">Hearing loss; eye and hair pigment abnormality</td></tr>
+	  <tr class="alt"><td valign="top" class="first-cell"><a href="https://en.wikipedia.org/wiki/Hirschsprung%27s_disease">Hirschsprung&#x27;s disease</a></td><td valign="top">Intestinal aganglionosis</td></tr>
+	  <tr><td valign="top" class="first-cell"><a href="https://en.wikipedia.org/wiki/Congenital_heart_defect">Congenital heart disease</a></td><td valign="top"><a href="https://en.wikipedia.org/wiki/Cardiac_neural_crest_cells">Outflow tract</a> defects are common</td></tr>
+	  <tr class="alt"><td valign="top" class="first-cell"><a href="https://en.wikipedia.org/wiki/Familial_dysautonomia">Familial dysautonomia</a></td><td valign="top">Problems with formation and function of parasympathetic and sympathetic neurons</td></tr>
+	  <tr><td valign="top" class="first-cell">Pediatric and adult <a href="https://en.wikipedia.org/wiki/Cancer">cancer</a></td><td valign="top">Examples include <a href="https://en.wikipedia.org/wiki/Neuroblastoma">neuroblastoma</a> and <a href="https://en.wikipedia.org/wiki/Melanoma">melanoma</a></td></tr>
+	  <tr class="alt"><td valign="top" class="first-cell"><a href="https://en.wikipedia.org/wiki/Piebaldism">Piebaldism</a></td><td valign="top">Pigment defects as a result of problems with melanocyte formation</td></tr>
+	  <tr><td valign="top" class="first-cell"><a href="https://en.wikipedia.org/wiki/Axenfeld_syndrome">Axenfeld-Rieger syndrome<a></td><td valign="top">Glaucoma; malformations of eye, teeth and skeleton</td></tr>
+	  <tr class="alt"><td class="first-cell" valign="top"><a href="https://en.wikipedia.org/wiki/Goldenhar_syndrome">Goldenhar syndrome</a></td><td valign="top">Malformation of palate, ear, nose, lip and jaw</td></tr>
+	</tbody>
+      </table>
+    </div>
+
+    <div class="step" data-x="-4763" data-y="-540" data-z="-8250" data-rotate-x="0" data-rotate-y="240" data-rotate-z="2.7" data-scale="0.5">
+      <font size="36" family="bold">THANK YOU!
+      <video width="650" height="444" autoplay loop>
+	<source src="images/oscars_robin_williams.mp4" type="video/mp4">
+      </video> 
+    </div>
+    
+    <div class="step" data-x="-5168" data-y="-500" data-z="-7381" data-rotate-x="0" data-rotate-y="250" data-rotate-z="2.7">
+
+    </div>
+    
+    <div class="step slide" data-x="-5416" data-y="-460" data-z="-6455" data-rotate-x="0" data-rotate-y="260" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-5500" data-y="-420" data-z="-5500" data-rotate-x="0" data-rotate-y="270" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-5416" data-y="-380" data-z="-4545" data-rotate-x="0" data-rotate-y="280" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-5168" data-y="-340" data-z="-3619" data-rotate-x="0" data-rotate-y="290" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-4763" data-y="-300" data-z="-2750" data-rotate-x="0" data-rotate-y="300" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-4213" data-y="-260" data-z="-1965" data-rotate-x="0" data-rotate-y="310" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-3535" data-y="-220" data-z="-1287" data-rotate-x="0" data-rotate-y="320" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-2750" data-y="-180" data-z="-737" data-rotate-x="0" data-rotate-y="330" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-1881" data-y="-140" data-z="-332" data-rotate-x="0" data-rotate-y="340" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-955" data-y="-100" data-z="-84" data-rotate-x="0" data-rotate-y="350" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+
+<!--
+
+
+
+
+
+-->    
+    <div class="step slide" data-x="0" data-y="-60" data-z="0" data-rotate-y="360" data-rotate-z="2.5">
+        <q>Aren’t you just <b>bored</b> with all those slides-based presentations?</q>
+    </div>
+
+    <div class="step slide" data-x="955" data-y="-20" data-z="-84" data-rotate-x="0" data-rotate-y="370" data-rotate-z="2.7">
+        <q>Don’t you think that presentations given <strong>in modern browsers</strong> shouldn’t <strong>copy the limits</strong> of ‘classic’ slide decks?</q>
+    </div>
+
+    <div class="step slide" data-x="1881" data-y="20" data-z="-332"  data-rotate-x="0" data-rotate-y="380" data-rotate-z="2.7">
+        <q>Would you like to <strong>impress your audience</strong> with <strong>stunning visualization</strong> of your talk?</q>
+    </div>
+
+    <div class="step slide" data-x="2750" data-y="60" data-z="-737" data-rotate-x="0" data-rotate-y="390" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="3535" data-y="100" data-z="-1287" data-rotate-x="0" data-rotate-y="400" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="4213" data-y="140" data-z="-1964" data-rotate-x="0" data-rotate-y="410" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="4763" data-y="180" data-z="-2750" data-rotate-x="0" data-rotate-y="420" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="5168" data-y="220" data-z="-3619" data-rotate-x="0" data-rotate-y="430" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="5416" data-y="260" data-z="-4545" data-rotate-x="0" data-rotate-y="440" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="5500" data-y="300" data-z="-5500" data-rotate-x="0" data-rotate-y="450" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="5416" data-y="340" data-z="-6455" data-rotate-x="0" data-rotate-y="460" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="5168" data-y="380" data-z="-7381" data-rotate-x="0" data-rotate-y="470" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="4763" data-y="420" data-z="-8250" data-rotate-x="0" data-rotate-y="480" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="4213" data-y="460" data-z="-9035" data-rotate-x="0" data-rotate-y="490" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="3535" data-y="500" data-z="-9713" data-rotate-x="0" data-rotate-y="500" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="2750" data-y="540" data-z="-10263" data-rotate-x="0" data-rotate-y="510" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="1881" data-y="580" data-z="-10668" data-rotate-x="0" data-rotate-y="520" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="955" data-y="620" data-z="-10916" data-rotate-x="0" data-rotate-y="530" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="0" data-y="660" data-z="-11000" data-rotate-x="0" data-rotate-y="540" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="-955" data-y="700" data-z="-10916" data-rotate-x="0" data-rotate-y="550" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+     
+    <div class="step slide" data-x="-1881" data-y="740" data-z="-10668" data-rotate-x="0" data-rotate-y="560" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+     
+    <div class="step slide" data-x="-2750" data-y="780" data-z="-10263" data-rotate-x="0" data-rotate-y="570" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-3535" data-y="820" data-z="-9713" data-rotate-x="0" data-rotate-y="580" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-4213" data-y="860" data-z="-9035" data-rotate-x="0" data-rotate-y="590" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+
+    <div class="step slide" data-x="-4763" data-y="900" data-z="-8250" data-rotate-x="0" data-rotate-y="600" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-5168" data-y="940" data-z="-7381" data-rotate-x="0" data-rotate-y="610" data-rotate-z="2.7">
+        <q>This is a slide <strong>with important text</strong> on it <strong>don't want to miss</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-5416" data-y="980" data-z="-6455" data-rotate-x="0" data-rotate-y="620" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-5500" data-y="1020" data-z="-5500" data-rotate-x="0" data-rotate-y="630" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-5416" data-y="1060" data-z="-4545" data-rotate-x="0" data-rotate-y="640" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-5168" data-y="1100" data-z="-3619" data-rotate-x="0" data-rotate-y="650" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-4763" data-y="1140" data-z="-2750" data-rotate-x="0" data-rotate-y="660" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-4213" data-y="1180" data-z="-1965" data-rotate-x="0" data-rotate-y="670" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-3535" data-y="1220" data-z="-1287" data-rotate-x="0" data-rotate-y="680" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-2750" data-y="1260" data-z="-737" data-rotate-x="0" data-rotate-y="690" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-1881" data-y="1300" data-z="-332" data-rotate-x="0" data-rotate-y="700" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+    
+    <div class="step slide" data-x="-955" data-y="1340" data-z="-84" data-rotate-x="0" data-rotate-y="710" data-rotate-z="2.7">
+        <q>All work <strong>and NO PLAY</strong> makes Jack <strong>A D<subscript>u</subscript>ll Boy</strong> ...</q>
+    </div>
+
+
+    <div id="overview2" class="step" data-x="0" data-y="0" data-z="4000" data-scale="10" data-rotate-y="720">
+    </div>
+    <div id="title" class="step" data-x="0" data-y="-1500" data-z="-150" data-rotate-y="0" data-rotate-z="2.5" data-scale=2.5>
+      <img src="images/Entry_24535_Mouse-Embryo-3Color.png" style="position:absolute; LEFT:-0px; TOP:-300px; WIDTH:508px; HEIGHT:640px">
+    </div>
+
+    <div id="overview" class="step" data-x="0" data-y="0" data-z="3000" data-scale="10" data-rotate-y="0">
+    </div>
+
+</div>
+
+<!--
+    
+    Hint is not related to impress.js in any way.
+    
+    But it can show you how to use impress.js features in creative way.
+    
+    When the presentation step is shown (selected) its element gets the class of "active" and the body element
+    gets the class based on active step id `impress-on-ID` (where ID is the step's id)... It may not be
+    so clear because of all these "ids" in previous sentence, so for example when the first step (the one with
+    the id of `bored`) is active, body element gets a class of `impress-on-bored`.
+    
+    This class is used by this hint below. Check CSS file to see how it's shown with delayed CSS animation when
+    the first step of presentation is visible for a couple of seconds.
+    
+    ...
+    
+    And when it comes to this piece of JavaScript below ... kids, don't do this at home ;)
+    It's just a quick and dirty workaround to get different hint text for touch devices.
+    In a real world it should be at least placed in separate JS file ... and the touch content should be
+    probably just hidden somewhere in HTML - not hard-coded in the script.
+    
+    Just sayin' ;)
+    
+-->
+<div class="hint">
+    <p>Use a spacebar or arrow keys to navigate</p>
+</div>
+<script>
+if ("ontouchstart" in document.documentElement) { 
+    document.querySelector(".hint").innerHTML = "<p>Tap on the left or right to navigate</p>";
+}
+</script>
+
+<!--
+    
+    Last, but not least.
+    
+    To make all described above really work, you need to include impress.js in the page.
+    I strongly encourage to minify it first.
+    
+    In here I just include full source of the script to make it more readable.
+    
+    You also need to call a `impress().init()` function to initialize impress.js presentation.
+    And you should do it in the end of your document. Not only because it's a good practice, but also
+    because it should be done when the whole document is ready.
+    Of course you can wrap it in any kind of "DOM ready" event, but I was too lazy to do so ;)
+    
+-->
+<script src="js/impress.js"></script>
+<script>impress().init();</script>
+
+<!--
+    
+    The `impress()` function also gives you access to the API that controls the presentation.
+    
+    Just store the result of the call:
+    
+        var api = impress();
+    
+    and you will get three functions you can call:
+    
+        `api.init()` - initializes the presentation,
+        `api.next()` - moves to next step of the presentation,
+        `api.prev()` - moves to previous step of the presentation,
+        `api.goto( stepIndex | stepElementId | stepElement, [duration] )` - moves the presentation to the step given by its index number
+                id or the DOM element; second parameter can be used to define duration of the transition in ms,
+                but it's optional - if not provided default transition duration for the presentation will be used.
+    
+    You can also simply call `impress()` again to get the API, so `impress().next()` is also allowed.
+    Don't worry, it wont initialize the presentation again.
+    
+    For some example uses of this API check the last part of the source of impress.js where the API
+    is used in event handlers.
+    
+-->
+
+</body>
+</html>
+
+<!--
+    
+    Now you know more or less everything you need to build your first impress.js presentation, but before
+    you start...
+    
+    Oh, you've already cloned the code from GitHub?
+    
+    You have it open in text editor?
+    
+    Stop right there!
+    
+    That's not how you create awesome presentations. This is only a code. Implementation of the idea that
+    first needs to grow in your mind.
+    
+    So if you want to build great presentation take a pencil and piece of paper. And turn off the computer.
+    
+    Sketch, draw and write. Brainstorm your ideas on a paper. Try to build a mind-map of what you'd like
+    to present. It will get you closer and closer to the layout you'll build later with impress.js.
+    
+    Get back to the code only when you have your presentation ready on a paper. It doesn't make sense to do
+    it earlier, because you'll only waste your time fighting with positioning of useless points.
+    
+    If you think I'm crazy, please put your hands on a book called "Presentation Zen". It's all about 
+    creating awesome and engaging presentations.
+    
+    Think about it. 'Cause impress.js may not help you, if you have nothing interesting to say.
+    
+-->
+
+<!--
+    
+    Are you still reading this?
+    
+    For real?
+    
+    I'm impressed! Feel free to let me know that you got that far (I'm @bartaz on Twitter), 'cause I'd like
+    to congratulate you personally :)
+    
+    But you don't have to do it now. Take my advice and take some time off. Make yourself a cup of coffee, tea,
+    or anything you like to drink. And raise a glass for me ;)
+    
+    Cheers!
+    
+-->
+
